@@ -6,7 +6,8 @@ package main.com.game;
 public class GameBoard {
     private int columns;
     private int rows;
-    private GamePlayer[][] grid;
+    private GameSquare[][] grid;
+    private GamePlayer player;
 
     {
         // default columns and rows
@@ -14,17 +15,28 @@ public class GameBoard {
         rows = 8;
 
         // set up grid
-        grid = new GamePlayer[columns][rows];
+        grid = new GameSquare[columns][rows];
 
-        // create player and put in board
-        grid[0][0] = new GamePlayer();
+        // initialise grid
+        for (int col = 0; col < columns; col++){
+            for (int row = 0; row < rows; row++){
+                grid[col][row] = new GameSquare();
+            }
+        }
+    }
+
+    public GameBoard(GamePlayer player){
+        GameSquare firstSquare = grid[0][0];
+        this.player = player;
+        this.player.setPosition(0,0);
+        firstSquare.setPlayer(player);
     }
 
     public int getSquares() {
         return columns*rows;
     }
 
-    public GamePlayer getSquare(int column, int row) {
+    public GameSquare getSquare(int column, int row) {
         return grid[column][row];
     }
 
@@ -34,5 +46,25 @@ public class GameBoard {
 
     public int getRows() {
         return rows;
+    }
+
+    public void movePlayer(String direction) {
+        direction = direction.toUpperCase();
+        if (direction == "U"){
+            move(0,1);
+        } else if (direction == "R"){
+            move(1,0);
+        }
+    }
+
+    private void move(int colIncrement, int rowIncrement){
+        // get and reset current player position
+        GameSquare gs = grid[player.getColumn()][player.getRow()];
+        gs.setPlayer(null);
+
+        // get and set new player position
+        player.setPosition(player.getColumn()+colIncrement, player.getRow()+rowIncrement);
+        GameSquare gs2 = grid[player.getColumn()][player.getRow()];
+        gs2.setPlayer(player);
     }
 }

@@ -5,12 +5,18 @@ package main.com.game;
  */
 public class Game {
     private GameBoard board;
+    private GamePlayer player;
 
     {
-        board = new GameBoard();
+        player = new GamePlayer();
+        board = new GameBoard(player);
     }
 
     public GameBoard getBoard() {
         return board;
+    }
+
+    public GamePlayer getPlayer() {
+        return player;
     }
 }

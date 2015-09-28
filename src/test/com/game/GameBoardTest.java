@@ -13,10 +13,12 @@ import org.junit.Test;
 public class GameBoardTest {
 
     GameBoard board;
+    GamePlayer player;
 
     @Before
     public void setUp(){
-        board = new GameBoard();
+        player = new GamePlayer();
+        board = new GameBoard(player);
     }
 
     @After
@@ -35,11 +37,6 @@ public class GameBoardTest {
     }
 
     @Test
-    public void bottomLeftSquareContainsPlayerFromStart(){
-        Assert.assertTrue(board.getSquare(0,0) instanceof GamePlayer);
-    }
-
-    @Test
     public void has8Columns(){
         Assert.assertEquals(8, board.getColumns());
     }
@@ -47,5 +44,33 @@ public class GameBoardTest {
     @Test
     public void has8Rows(){
         Assert.assertEquals(8, board.getRows());
+    }
+
+    @Test
+    public void gridContainsSquares(){
+        for (int col = 0; col < board.getColumns(); col++){
+            for (int row = 0; row < board.getRows(); row++){
+                Assert.assertTrue(board.getSquare(col,row) != null);
+            }
+        }
+    }
+
+    @Test
+    public void firstSquareHasPlayerAtStartOfGame(){
+        Assert.assertEquals(board.getSquare(0,0).getPlayer(), player);
+    }
+
+    @Test
+    public void canMovePlayerUpBy1Square(){
+        Assert.assertEquals(0, player.getRow());
+        board.movePlayer("U");
+        Assert.assertEquals(1, player.getRow());
+    }
+
+    @Test
+    public void canMovePlayerRightBy1Square(){
+        Assert.assertEquals(0, player.getColumn());
+        board.movePlayer("R");
+        Assert.assertEquals(1, player.getColumn());
     }
 }
