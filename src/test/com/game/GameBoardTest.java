@@ -94,6 +94,13 @@ public class GameBoardTest {
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void throwsExceptionIfPlayerMovedLeftOffBoard(){
+        // this only happens at the start when a player is positioned at the bottom left most square of the board
         board.movePlayer("L");
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void throwsExceptionIfPlayerMovedDownOffBoard(){
+        // this only happens at the start when a player is positioned at the bottom left most square of the board
+        board.movePlayer("D");
     }
 }
