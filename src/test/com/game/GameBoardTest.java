@@ -2,6 +2,7 @@ package test.com.game;
 
 import main.com.game.GameBoard;
 import main.com.game.GamePlayer;
+import main.com.game.GameSquare;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -28,12 +29,12 @@ public class GameBoardTest {
 
     @Test
     public void has64Squares(){
-        Assert.assertEquals(64, board.getSquares());
+        Assert.assertEquals(64, board.getTotalSquares());
     }
 
     @Test
     public void is8x8Grid(){
-        Assert.assertEquals(8, board.getSquares()/8);
+        Assert.assertEquals(8, board.getTotalSquares()/8);
     }
 
     @Test
@@ -102,5 +103,25 @@ public class GameBoardTest {
     public void throwsExceptionIfPlayerMovedDownOffBoard(){
         // this only happens at the start when a player is positioned at the bottom left most square of the board
         board.movePlayer("D");
+    }
+
+    @Test
+    public void boardContainsSomeMines(){
+        int numberOfMinesFound = 0;
+        GameSquare square;
+        for (int col = 0; col < board.getColumns(); col++) {
+            for (int row = 0; row < board.getRows(); row++) {
+                square = board.getSquare(col,row);
+                if (square.hasMine()){
+                    numberOfMinesFound += 1;
+                }
+            }
+        }
+        Assert.assertTrue("Expected: > 0, Actual: " + String.valueOf(numberOfMinesFound), numberOfMinesFound > 0);
+    }
+
+    @Test
+    public void startPositionDoesNotHaveMine(){
+        Assert.assertFalse(board.getSquare(0,0).hasMine());
     }
 }

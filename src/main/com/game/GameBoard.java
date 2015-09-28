@@ -18,9 +18,17 @@ public class GameBoard {
         grid = new GameSquare[columns][rows];
 
         // initialise grid
+        GameSquare gs;
         for (int col = 0; col < columns; col++){
             for (int row = 0; row < rows; row++){
-                grid[col][row] = new GameSquare();
+                gs = new GameSquare();
+                // don't want the starting position to have a mine otherwise its game over already!
+                if ((row > 0 && col == 0) || (row == 0 && col > 0) || row > 0 || col > 0) {
+                    if (Math.random() >= 0.5) {
+                        gs.layMine();
+                    }
+                }
+                grid[col][row] = gs;
             }
         }
     }
@@ -32,7 +40,7 @@ public class GameBoard {
         firstSquare.setPlayer(player);
     }
 
-    public int getSquares() {
+    public int getTotalSquares() {
         return columns*rows;
     }
 
