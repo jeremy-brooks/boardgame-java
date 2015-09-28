@@ -34,4 +34,18 @@ public class GameTest {
         GamePlayer player = game.getPlayer();
         Assert.assertTrue(player instanceof GamePlayer);
     }
+
+    @Test
+    public void gameIsNotWonAtStart(){
+        Assert.assertFalse(game.isWon());
+    }
+
+    @Test
+    public void whenPlayerReachesTopOfBoardTheyWin(){
+        // start at 1 because the rows are not zero indexed!
+        for (int row = 1; row < game.getBoard().getRows(); row++){
+            game.movePlayerUp();
+        }
+        Assert.assertTrue(game.isWon());
+    }
 }
