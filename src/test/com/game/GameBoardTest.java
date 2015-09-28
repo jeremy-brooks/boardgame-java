@@ -61,16 +61,39 @@ public class GameBoardTest {
     }
 
     @Test
-    public void canMovePlayerUpBy1Square(){
+    public void canMovePlayerUp(){
         Assert.assertEquals(0, player.getRow());
         board.movePlayer("U");
         Assert.assertEquals(1, player.getRow());
     }
 
     @Test
-    public void canMovePlayerRightBy1Square(){
+    public void canMovePlayerDown(){
+        Assert.assertEquals(0, player.getRow());
+        board.movePlayer("U");
+        Assert.assertEquals(1, player.getRow());
+        board.movePlayer("D");
+        Assert.assertEquals(0, player.getRow());
+    }
+
+    @Test
+    public void canMovePlayerRight(){
         Assert.assertEquals(0, player.getColumn());
         board.movePlayer("R");
         Assert.assertEquals(1, player.getColumn());
+    }
+
+    @Test
+    public void canMovePlayerLeft(){
+        Assert.assertEquals(0, player.getColumn());
+        board.movePlayer("R");
+        Assert.assertEquals(1, player.getColumn());
+        board.movePlayer("L");
+        Assert.assertEquals(0, player.getColumn());
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void throwsExceptionIfPlayerMovedLeftOffBoard(){
+        board.movePlayer("L");
     }
 }

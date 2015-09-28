@@ -54,6 +54,10 @@ public class GameBoard {
             move(0,1);
         } else if (direction == "R"){
             move(1,0);
+        } else if (direction == "L"){
+            move(-1,0);
+        } else if (direction == "D"){
+            move(0,-1);
         }
     }
 
