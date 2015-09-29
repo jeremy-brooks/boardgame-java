@@ -4,6 +4,7 @@ package main.com.game;
  * Created by jbrooks on 28/09/2015.
  */
 public class Game {
+    public static String STATUS = "Player position: %d,%d; Game is won: %b; Mines hit: %d";
     private GameBoard board;
     private GamePlayer player;
     private boolean won;
@@ -31,5 +32,9 @@ public class Game {
         if (player.getRow() == 7){
             won = true;
         }
+    }
+
+    public String getGameStatus() {
+        return String.format(Game.STATUS, player.getColumn(), player.getRow(), isWon(), 0);
     }
 }

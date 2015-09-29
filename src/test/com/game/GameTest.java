@@ -48,4 +48,9 @@ public class GameTest {
         }
         Assert.assertTrue(game.isWon());
     }
+
+    @Test
+    public void displaysGameStatus(){
+        Assert.assertEquals(String.format(Game.STATUS,0,0,false,0), game.getGameStatus());
+    }
 }
