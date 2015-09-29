@@ -1,4 +1,4 @@
-package main.com.game;
+package com.game;
 
 /**
  * Created by jbrooks on 28/09/2015.
