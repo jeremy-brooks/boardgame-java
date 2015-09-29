@@ -3,7 +3,6 @@ package com.game;
 import com.game.GameBoard;
 import com.game.GamePlayer;
 import com.game.GameSquare;
-import cucumber.api.junit.Cucumber;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,8 +12,6 @@ import org.junit.runner.RunWith;
 /**
  * Created by jbrooks on 28/09/2015.
  */
-
-@RunWith(Cucumber.class)
 public class GameBoardTest {
 
     GameBoard board;
