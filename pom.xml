@@ -8,5 +8,11 @@
     <artifactId>plural-testing-basics</artifactId>
     <version>develop-SNAPSHOT</version>
 
-    
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+        </dependency>
+    </dependencies>
 </project>
