@@ -8,9 +8,11 @@ public class Game {
     private GameBoard board;
     private GamePlayer player;
     private boolean won;
+    private int numberOfPlayers;
 
     {
         player = new GamePlayer();
+        numberOfPlayers = 1;
         board = new GameBoard(player);
         won = false;
     }
@@ -27,6 +29,14 @@ public class Game {
         return won;
     }
 
+    public String getGameStatus() {
+        return String.format(Game.STATUS, player.getColumn(), player.getRow(), isWon(), 0);
+    }
+
+    public int getNumberOfPlayers() {
+        return numberOfPlayers;
+    }
+
     public void movePlayerUp() {
         board.movePlayer("U");
         if (player.getRow() == 7){
@@ -34,7 +44,7 @@ public class Game {
         }
     }
 
-    public String getGameStatus() {
-        return String.format(Game.STATUS, player.getColumn(), player.getRow(), isWon(), 0);
+    public void movePlayerRight() {
+        board.movePlayer("R");
     }
 }
